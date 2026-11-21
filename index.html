@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Новогоднее письмо ✉️🎄</title>
+  
+  <!-- MAX Bridge SDK for Mini-Apps in MAX Messenger -->
+  <script src="https://st.max.ru/js/max-web-app.js"></script>
+
+  <!-- Google Fonts: Comfortaa & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas for falling snowflakes and fireworks/confetti -->
+  <canvas id="snow-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <main class="container">
+    <header class="app-header">
+      <span class="badge">❄️ Новогодняя почта МАКС</span>
+      <h1 class="main-title">Тебе пришло тайное письмо!</h1>
+      <p class="subtitle" id="instruction-text">Нажми на конверт, чтобы распечатать его</p>
+    </header>
+
+    <!-- Interactive 3D Envelope Section -->
+    <div class="envelope-wrapper" id="envelope-wrapper" role="button" aria-label="Открыть новогодний конверт" tabindex="0">
+      <div class="envelope-card" id="envelope-card">
+        
+        <!-- Back of the envelope -->
+        <div class="envelope-back">
+          <!-- Holiday Postage Stamp & Postmark -->
+          <div class="postage-stamp">
+            <span class="stamp-icon">🎄</span>
+            <span class="stamp-year">2027</span>
+          </div>
+          <div class="postmark">
+            <span class="postmark-line">ПОЧТА ДЕДА МОРОЗА</span>
+            <span class="postmark-star">★ 2027 ★</span>
+          </div>
+        </div>
+
+        <!-- The Letter Paper (hidden until opened!) -->
+        <article class="letter-paper" id="letter-paper">
+          <div class="letter-decor top-decor">✨ ❄️ ✨</div>
+          <h2 class="letter-heading">Дорогой друг! 🎄</h2>
+          <div class="letter-divider"></div>
+          
+          <div class="question-box">
+            <p class="question-label">Главный вопрос года:</p>
+            <p class="question-text">Что ты хочешь на Новый год? 🎁</p>
+          </div>
+
+          <div class="wish-form" id="wish-form">
+            <textarea 
+              id="wish-input" 
+              class="wish-textarea" 
+              rows="3" 
+              placeholder="Напиши своё желание... (или просто нажми Понял)"
+              maxlength="300"
+            ></textarea>
+            
+            <button type="button" class="action-btn btn-confirm" id="btn-confirm">
+              <span class="btn-text">Понял</span>
+              <span class="btn-icon">🎅</span>
+            </button>
+          </div>
+
+          <!-- Result state inside letter after clicking "Понял" -->
+          <div class="letter-result hidden" id="letter-result">
+            <div class="result-badge">✨ Загадано! ✨</div>
+            <p class="result-wish-preview" id="result-wish-preview"></p>
+            <p class="result-message">
+              Дед Мороз уже получил твоё послание! Пусть в 2027 году всё задуманное сбудется! 🌟
+            </p>
+            <div class="result-actions">
+              <button type="button" class="action-btn btn-share" id="btn-share">
+                <span>Поделиться в МАКСе</span> 🚀
+              </button>
+              <button type="button" class="action-btn btn-restart" id="btn-restart">
+                <span>Закрыть письмо</span> ✉️
+              </button>
+            </div>
+          </div>
+
+          <div class="letter-decor bottom-decor">❄️ ⛄ ❄️</div>
+        </article>
+
+        <!-- Left and Right Envelope Flaps -->
+        <div class="envelope-left"></div>
+        <div class="envelope-right"></div>
+
+        <!-- Bottom pocket flap -->
+        <div class="envelope-bottom"></div>
+
+        <!-- Top folding flap -->
+        <div class="envelope-flap" id="envelope-flap"></div>
+
+        <!-- Wax Seal Button on the flap -->
+        <div class="wax-seal" id="wax-seal">
+          <div class="wax-seal-inner">
+            <span class="seal-icon">✉️</span>
+            <span class="seal-ring"></span>
+          </div>
+          <span class="seal-hint">Нажми</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Audio toggle (ambient bell chime) -->
+    <div class="audio-control">
+      <button type="button" id="audio-toggle" class="icon-btn" title="Звук">🔔</button>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
